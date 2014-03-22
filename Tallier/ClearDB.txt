@@ -1,0 +1,6 @@
+﻿delete from Result
+delete from Votes
+delete from PublicKeys
+delete from ElectionOptions
+delete from Elections
+
