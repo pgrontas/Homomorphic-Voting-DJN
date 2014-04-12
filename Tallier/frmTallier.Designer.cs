@@ -36,6 +36,7 @@
             this.btnDecrypt = new System.Windows.Forms.Button();
             this.btnCombine = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnValidate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -72,14 +73,14 @@
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(436, 141);
+            this.txtLog.Size = new System.Drawing.Size(436, 196);
             this.txtLog.TabIndex = 14;
             // 
             // btnAggregate
             // 
-            this.btnAggregate.Location = new System.Drawing.Point(12, 49);
+            this.btnAggregate.Location = new System.Drawing.Point(128, 49);
             this.btnAggregate.Name = "btnAggregate";
-            this.btnAggregate.Size = new System.Drawing.Size(152, 35);
+            this.btnAggregate.Size = new System.Drawing.Size(113, 35);
             this.btnAggregate.TabIndex = 18;
             this.btnAggregate.Text = "Compute Result";
             this.btnAggregate.UseVisualStyleBackColor = true;
@@ -87,9 +88,9 @@
             // 
             // btnDecrypt
             // 
-            this.btnDecrypt.Location = new System.Drawing.Point(170, 49);
+            this.btnDecrypt.Location = new System.Drawing.Point(247, 49);
             this.btnDecrypt.Name = "btnDecrypt";
-            this.btnDecrypt.Size = new System.Drawing.Size(146, 35);
+            this.btnDecrypt.Size = new System.Drawing.Size(105, 35);
             this.btnDecrypt.TabIndex = 19;
             this.btnDecrypt.Text = "Decrypt Share";
             this.btnDecrypt.UseVisualStyleBackColor = true;
@@ -97,9 +98,9 @@
             // 
             // btnCombine
             // 
-            this.btnCombine.Location = new System.Drawing.Point(322, 49);
+            this.btnCombine.Location = new System.Drawing.Point(358, 49);
             this.btnCombine.Name = "btnCombine";
-            this.btnCombine.Size = new System.Drawing.Size(126, 35);
+            this.btnCombine.Size = new System.Drawing.Size(90, 35);
             this.btnCombine.TabIndex = 20;
             this.btnCombine.Text = "Combine";
             this.btnCombine.UseVisualStyleBackColor = true;
@@ -109,11 +110,22 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // btnValidate
+            // 
+            this.btnValidate.Location = new System.Drawing.Point(15, 49);
+            this.btnValidate.Name = "btnValidate";
+            this.btnValidate.Size = new System.Drawing.Size(107, 35);
+            this.btnValidate.TabIndex = 21;
+            this.btnValidate.Text = "Validate Proofs";
+            this.btnValidate.UseVisualStyleBackColor = true;
+            this.btnValidate.Click += new System.EventHandler(this.btnValidate_Click);
+            // 
             // frmTallier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(460, 255);
+            this.ClientSize = new System.Drawing.Size(460, 314);
+            this.Controls.Add(this.btnValidate);
             this.Controls.Add(this.btnCombine);
             this.Controls.Add(this.btnDecrypt);
             this.Controls.Add(this.btnAggregate);
@@ -142,6 +154,7 @@
         private System.Windows.Forms.Button btnDecrypt;
         private System.Windows.Forms.Button btnCombine;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btnValidate;
     }
 }
 
