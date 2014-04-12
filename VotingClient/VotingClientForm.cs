@@ -13,6 +13,9 @@ using System.Numerics;
 using CryptoLib;
 using Microsoft.FSharp.Core;
 
+using Proof = System.Tuple<System.Numerics.BigInteger[], System.Numerics.BigInteger, System.Numerics.BigInteger[], System.Numerics.BigInteger[]>;
+using CipherProof = System.Tuple<System.Numerics.BigInteger, System.Tuple<System.Numerics.BigInteger[], System.Numerics.BigInteger, System.Numerics.BigInteger[], System.Numerics.BigInteger[]>>;
+
 namespace VotingClient
 {
     public partial class VotingClientForm : Form
@@ -51,7 +54,13 @@ namespace VotingClient
         private void btnCastVote_Click(object sender, EventArgs e)
         {
             var c = vc.doEncrypt(vote);
-            vc.doInsertVote(c);
+            try{
+                var vid = vc.doInsertVote(c.Item1);
+                vc.doInsertProof(c.Item2,vid);
+            }
+            catch (Exception ex){
+                log(ex.Message);
+            }
         } 
         
         private void cmbElection_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -74,16 +83,14 @@ namespace VotingClient
         private void VotingClientForm_Load(object sender, EventArgs e)
         {
 
-        }
-
-         
-
+        } 
        
     }
 
     class VotingClient
     {
         private string electionID;
+        private int numCandidates;
 
         public string ElectionID
         {
@@ -99,6 +106,7 @@ namespace VotingClient
             initDB();
             this.log = log;
             this.electionID = string.Empty;
+            numCandidates = 0;
         }
 
         private void initDB()
@@ -141,7 +149,7 @@ namespace VotingClient
                 eDict.Add(reader["label"].ToString(), Int32.Parse(reader["value"].ToString()));
             }
             log("Successfully Retrieved Election Options For Election " + ElectionID);
-
+            numCandidates = eDict.Count;
             return eDict;
 
         }
@@ -154,21 +162,21 @@ namespace VotingClient
             reader.Read();
             var n = BigInteger.Parse(reader["n"].ToString());
             var s= Int32.Parse(reader["s"].ToString()); 
-            log("Successfully Retrieved Public Key!" + n + "," + s);
+            log("Successfully Retrieved Public Key! ");
 
             var pk = Tuple.Create(n, s, new BigInteger(1), new BigInteger(1));
             return pk;
 
         }
 
-        public BigInteger doEncrypt(int vote)
+        public CipherProof doEncrypt(int vote)
         { 
             var pk = retrieveKey();
             var M = retrieveM();
-            var eg = new DJN.DJN(M);
-            var c = eg.mvote<BigInteger, BigInteger>(vote, pk);
-            log("Cipher" + c.ToString());
-            return c;
+            var eg = new DJN.DJN(numCandidates);
+            var cipherProof = eg.mvote<BigInteger, BigInteger>(vote, pk);
+            log("Cipher Created ");
+            return cipherProof;
         }
 
         private BigInteger retrieveM()
@@ -177,28 +185,45 @@ namespace VotingClient
             SQLiteCommand command = new SQLiteCommand(sql, dbConn);
             command.Parameters.AddWithValue("@Eid", electionID);
             var m = command.ExecuteScalar();
-            log("Successfully Retrieved M=" + m);
+            //log("Successfully Retrieved M=" + m);
 
             return BigInteger.Parse(m.ToString());
         }
 
-        public void doInsertVote(BigInteger c)
+        public string doInsertVote(BigInteger c)
         {
+            var voteID =  System.Guid.NewGuid().ToString();
             SQLiteCommand insertSQL = new SQLiteCommand(
                     "INSERT INTO Votes (Id, Cipher, ElectionID) VALUES (@id,@C,@Eid)", dbConn);
-            insertSQL.Parameters.AddWithValue("@id", System.Guid.NewGuid());
+            insertSQL.Parameters.AddWithValue("@id",voteID);
             insertSQL.Parameters.AddWithValue("@C", c.ToString()); 
             insertSQL.Parameters.AddWithValue("@Eid", electionID);
-            try
-            {
-                insertSQL.ExecuteNonQuery();
-                log("Vote Cast" + c.ToString());
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            insertSQL.ExecuteNonQuery();
+            log("Vote Cast");
+            return voteID; 
         } 
+
+        public void doInsertProof(Proof p, string voteID){
+            var offers = p.Item1;
+            var challenge = p.Item2;
+            var zs = p.Item3;
+            var cs = p.Item4;
+            for (int i = 0; i<offers.Length; i++){
+                SQLiteCommand insertSQL = new SQLiteCommand(
+                        @"INSERT INTO VoteProofs (Id, VoteID, ElectionID, offer, challenge, zs, cs) 
+                          VALUES (@id,@vId,@Eid,@offer,@challenge,@zs,@cs)", dbConn);
+                insertSQL.Parameters.AddWithValue("@id", System.Guid.NewGuid());
+                insertSQL.Parameters.AddWithValue("@vId", voteID);
+                insertSQL.Parameters.AddWithValue("@Eid", electionID);
+                insertSQL.Parameters.AddWithValue("@offer", offers[i].ToString());
+                insertSQL.Parameters.AddWithValue("@challenge", challenge.ToString());
+                insertSQL.Parameters.AddWithValue("@zs", zs[i].ToString());
+                insertSQL.Parameters.AddWithValue("@cs", cs[i].ToString());
+                insertSQL.ExecuteNonQuery();
+            }            
+            log(offers.Length + " Proofs Inserted");
+            
+        }
 
     }
 }

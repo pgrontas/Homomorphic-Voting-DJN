@@ -51,7 +51,7 @@
             this.cmbElection.FormattingEnabled = true;
             this.cmbElection.Location = new System.Drawing.Point(101, 12);
             this.cmbElection.Name = "cmbElection";
-            this.cmbElection.Size = new System.Drawing.Size(171, 21);
+            this.cmbElection.Size = new System.Drawing.Size(239, 21);
             this.cmbElection.TabIndex = 8;
             this.cmbElection.SelectedIndexChanged += new System.EventHandler(this.cmbElection_SelectedIndexChanged_1);
             // 
@@ -62,7 +62,7 @@
             this.txtLog.Name = "txtLog";
             this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLog.Size = new System.Drawing.Size(260, 141);
+            this.txtLog.Size = new System.Drawing.Size(328, 141);
             this.txtLog.TabIndex = 7;
             // 
             // label1
@@ -76,7 +76,7 @@
             // 
             // btnCastVote
             // 
-            this.btnCastVote.Location = new System.Drawing.Point(197, 79);
+            this.btnCastVote.Location = new System.Drawing.Point(265, 79);
             this.btnCastVote.Name = "btnCastVote";
             this.btnCastVote.Size = new System.Drawing.Size(75, 23);
             this.btnCastVote.TabIndex = 12;
@@ -101,7 +101,7 @@
             "No"});
             this.cmbElectionOptions.Location = new System.Drawing.Point(101, 43);
             this.cmbElectionOptions.Name = "cmbElectionOptions";
-            this.cmbElectionOptions.Size = new System.Drawing.Size(171, 21);
+            this.cmbElectionOptions.Size = new System.Drawing.Size(239, 21);
             this.cmbElectionOptions.TabIndex = 14;
             this.cmbElectionOptions.SelectedIndexChanged += new System.EventHandler(this.cmbElectionOptions_SelectedIndexChanged);
             // 
@@ -109,7 +109,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(352, 261);
             this.Controls.Add(this.cmbElectionOptions);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.btnCastVote);
