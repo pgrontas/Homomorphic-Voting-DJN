@@ -105,11 +105,11 @@ namespace ElectionCreator
             int i=1;
             foreach (var sk in secretKeys) {
                 System.IO.File.WriteAllLines("sk" + i + ".txt", new string[] { sk.ToString() });
-                log("Secret Key="+sk.ToString());
+                //log("Secret Key="+sk.ToString());
                 i++;
             }
 
-            var M = BigInteger.Pow (2, (k*s)/cnds+1);
+            var M = 103;
 
             var cmd = dbConn.CreateCommand();
             cmd.CommandText = " INSERT INTO PublicKeys (ID, n, s, D, ssp, Type, numShares, numThreshold, M, ElectionID) " +
