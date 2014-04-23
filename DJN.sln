@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "CryptoLib", "..\Millimix\Millimix\CryptoLib\CryptoLib.fsproj", "{91AA9ECF-1FDC-4ED3-A0BB-6F21E4658F65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElectionCreator", "ElectionCreator\ElectionCreator.csproj", "{E7266085-A176-411A-8B2D-56C0377AE234}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotingClient", "VotingClient\VotingClient.csproj", "{E627CDC8-8468-4C5C-8917-2273859BCB40}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tallier", "Tallier\Tallier.csproj", "{7F3C0415-4F54-413E-B7D0-EC8F4E6DA066}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{91AA9ECF-1FDC-4ED3-A0BB-6F21E4658F65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91AA9ECF-1FDC-4ED3-A0BB-6F21E4658F65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91AA9ECF-1FDC-4ED3-A0BB-6F21E4658F65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91AA9ECF-1FDC-4ED3-A0BB-6F21E4658F65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E7266085-A176-411A-8B2D-56C0377AE234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7266085-A176-411A-8B2D-56C0377AE234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7266085-A176-411A-8B2D-56C0377AE234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7266085-A176-411A-8B2D-56C0377AE234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E627CDC8-8468-4C5C-8917-2273859BCB40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E627CDC8-8468-4C5C-8917-2273859BCB40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E627CDC8-8468-4C5C-8917-2273859BCB40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E627CDC8-8468-4C5C-8917-2273859BCB40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F3C0415-4F54-413E-B7D0-EC8F4E6DA066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F3C0415-4F54-413E-B7D0-EC8F4E6DA066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F3C0415-4F54-413E-B7D0-EC8F4E6DA066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F3C0415-4F54-413E-B7D0-EC8F4E6DA066}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
